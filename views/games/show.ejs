@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+
+<div class="game-detail">
+  <% if (game.image_url) { %>
+    <img src="<%= game.image_url %>" alt="<%= game.title %>" class="game-image">
+  <% } %>
+  <div class="game-info">
+    <div class="page-header">
+      <h1><%= game.title %></h1>
+      <div>
+        <a href="/games/<%= game.id %>/edit" class="btn">Modifica</a>
+        <form action="/games/<%= game.id %>/delete" method="POST" style="display:inline">
+          <button type="submit" class="btn btn-danger" onclick="return confirm('Sicuro?')">Elimina</button>
+        </form>
+      </div>
+    </div>
+    <span class="badge"><%= game.genre_name %></span>
+    <p class="description"><%= game.description || 'Nessuna descrizione' %></p>
+    <p class="price">€ <%= game.price %></p>
+    <p class="stock"><%= game.stock %> disponibili</p>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,29 @@
+<%- include('../partials/header') %>
+
+<div class="page-header">
+  <h1><%= genre.name %></h1>
+  <div>
+    <a href="/genres/<%= genre.id %>/edit" class="btn">Modifica</a>
+    <form action="/genres/<%= genre.id %>/delete" method="POST" style="display:inline">
+      <button type="submit" class="btn btn-danger" onclick="return confirm('Sicuro?')">Elimina</button>
+    </form>
+  </div>
+</div>
+
+<p class="description"><%= genre.description || 'Nessuna descrizione' %></p>
+
+<h2>Giochi in questo genere</h2>
+<div class="grid">
+  <% if (games.length === 0) { %>
+    <p>Nessun gioco in questo genere.</p>
+  <% } else { %>
+    <% games.forEach(game => { %>
+      <a href="/games/<%= game.id %>" class="card">
+        <h3><%= game.title %></h3>
+        <p>€ <%= game.price %></p>
+      </a>
+    <% }) %>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
